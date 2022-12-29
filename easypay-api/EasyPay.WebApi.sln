@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyPay.WebApi", "E:\src\EasyPay.WebApi\EasyPay.WebApi\EasyPay.WebApi.csproj", "{E5DED4ED-3B31-44E0-B06E-D51E6870B29F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyPay.Test", "EasyPay.Test\EasyPay.Test.csproj", "{27110584-4B4C-4164-878B-B53C97C23238}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{45307983-53CE-4FD1-BF62-5A06A6B277BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5DED4ED-3B31-44E0-B06E-D51E6870B29F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5DED4ED-3B31-44E0-B06E-D51E6870B29F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5DED4ED-3B31-44E0-B06E-D51E6870B29F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5DED4ED-3B31-44E0-B06E-D51E6870B29F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27110584-4B4C-4164-878B-B53C97C23238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27110584-4B4C-4164-878B-B53C97C23238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27110584-4B4C-4164-878B-B53C97C23238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27110584-4B4C-4164-878B-B53C97C23238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45307983-53CE-4FD1-BF62-5A06A6B277BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45307983-53CE-4FD1-BF62-5A06A6B277BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45307983-53CE-4FD1-BF62-5A06A6B277BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45307983-53CE-4FD1-BF62-5A06A6B277BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12119BE4-879A-4C15-97C6-79678DD6809E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1 @@
+docker run -d --name easypay-db-service -p 5432:5432 -e POSTGRES_DB=easypay -e POSTGRES_USER=easypay -e POSTGRES_PASSWORD=easypay  postgres

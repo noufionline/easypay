@@ -1,0 +1,42 @@
+{
+  "profiles": {
+    "EasyPay.WebApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "ConnectionStrings": {
+        "EasyPayContext": "Server=localhost;Database=easypaydb;Username=easypay;Password=easypay;Port=5432"
+      },
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EasyPayContext": "Host=easypay-db-service;Database=easypaydb;Username=easypay;Password=easypay"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7182;http://localhost:5271"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:35555",
+      "sslPort": 44367
+    }
+  }
+}

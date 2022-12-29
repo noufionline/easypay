@@ -1,0 +1,41 @@
+version: '3.4'
+
+
+networks:
+  easypay-prod:
+    driver: bridge
+
+
+services:
+  easypay.webapi:
+    image: ${DOCKER_REGISTRY-}easypaywebapi
+    depends_on:
+      - "easypay-db-service"
+    build:
+      context: .
+      dockerfile: EasyPay.WebApi/Dockerfile
+    ports:
+      - 8888:80
+      - 8443:443
+    environment:
+      DB_CONNECTION_STRING: "host=easypay-db-service;port=5432;database=easypay;username=easypay;password=easypay"
+    networks:
+      - easypay-prod
+
+
+  easypay-db-service:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "easypay"
+      POSTGRES_PASSWORD: "easypay"
+      POSTGRES_DB: "easypay"
+    networks:
+      - easypay-prod
+volumes:
+  db_volume:  
+

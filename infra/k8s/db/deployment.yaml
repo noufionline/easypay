@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easypay-db
+  namespace: easypay
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: easypay-backend
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+              name: postgres
+          volumeMounts:
+            - mountPath: "/var/lib/postgresql/data"
+              name: easypay-postgres-data-storage
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD 
+          resources:
+            limits:
+              memory: "500Mi" # Maximum amount of ram in a container
+            requests:
+              memory: "100"    # minimum amount of ram available in a Pod
+      volumes:
+        - name: easypay-postgres-data-storage
+          persistentVolumeClaim:
+            claimName: easypay-postgres-pvc
+
+
+

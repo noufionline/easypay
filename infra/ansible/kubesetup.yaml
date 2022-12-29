@@ -1,0 +1,160 @@
+- hosts: all
+  remote_user: noufal 
+  become: yes
+  tasks:
+   - name: Remove swapfile from /etc/fstab
+     mount:
+       name: swap
+       fstype: swap
+       state: absent
+     
+   - name: Disable swap
+     command: swapoff -a     
+    
+   - name: remove swap entry
+     command: sed -i '/swap/d' /etc/fstab
+
+   - name: Disable ufw firewall
+     command: systemctl disable --now ufw
+
+   - name: Enable and Load Kernel modules
+     copy:
+       dest: "/etc/modules-load.d/containerd.conf"
+       content: |
+          overlay
+          br_netfilter
+
+   - name: Load overlay and br_netfilter
+     modprobe:
+       name: "{{ item }}"
+       state: present
+     loop:
+       - overlay
+       - br_netfilter
+
+   - name: Add Kernel settings
+     sysctl:
+       name: "{{ item }}"
+       value: "1"
+       sysctl_set: yes
+       sysctl_file: /etc/sysctl.d/kubernetes.conf
+       state: present
+       reload: yes
+     loop:
+       - net.bridge.bridge-nf-call-iptables
+       - net.bridge.bridge-nf-call-ip6tables
+       - net.ipv4.ip_forward
+
+   - name: Ensure containerd is installed.
+     package:
+       name: "{{ item }}"
+       state: present
+       update_cache: yes
+     loop:
+       - containerd
+       - apt-transport-https
+       - git
+
+   - name: Ensure containerd config directory exists.
+     file:
+       path: /etc/containerd
+       state: directory
+     register: containerd_dir 
+
+   - name: Get defaults from containerd.
+     command: containerd config default
+     register: containerd_config_default
+
+   - name: Prepare containerd/config.toml from default config
+     copy:
+       dest: /tmp/containerd_config.toml
+       content: "{{ containerd_config_default.stdout }}" 
+
+   - name: Set Cgroup driver to systemd
+     lineinfile:
+       insertafter: '.*\[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options\]$'
+       line: '          SystemdCgroup = true'
+       state: present
+       path: /tmp/containerd_config.toml
+
+   - name: Make sure  SystemdCgroup = false is not set
+     ansible.builtin.lineinfile:
+       path: /tmp/containerd_config.toml
+       state: absent
+       line: '            SystemdCgroup = false'
+     notify: restart containerd
+    
+
+   - name: Copy config.toml to /etc/containerd
+     copy:
+       remote_src: true
+       src: /tmp/containerd_config.toml
+       dest: /etc/containerd/config.toml
+     notify: restart containerd
+  
+
+   - name: Cleanup temporary file
+     file:
+       path: /tmp/containerd_config.toml
+       state: absent
+    
+   - name: Ensure containerd is started and enabled at boot.
+     service:
+       name: containerd
+       state: started
+       enabled: true
+
+   - name: Add Google official GPG key
+     apt_key:
+       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+       state: present
+   
+   - name: Add Kubernetes Repository
+     apt_repository:
+       repo: deb http://apt.kubernetes.io/ kubernetes-xenial main 
+       state: present
+       filename: kubernetes
+       mode: 0600
+
+   - name: Installing Kubernetes Cluster Packages.
+     apt: 
+       name:
+         - kubeadm=1.25.5-00
+         - kubectl=1.25.5-00
+         - kubelet=1.25.5-00
+       state: present
+
+   - name: Hold kubernetes packages along with containerd to avoid accidental upgrade
+     ansible.builtin.dpkg_selections:
+       name: "{{ item }}"
+       selection: hold
+     loop:
+       - kubeadm
+       - kubectl
+       - kubelet
+       - containerd
+   
+
+   - name: Enable service kubelet, and enable persistently
+     service: 
+       name: kubelet
+       enabled: yes
+
+   - name: kubeadm config images pull
+     command: kubeadm config images pull
+  
+   - name: Reboot all the kubernetes nodes.
+     reboot:
+       post_reboot_delay: 10
+       reboot_timeout: 40
+       connect_timeout: 60
+       test_command: uptime
+  
+  handlers:
+   - name: restart containerd
+     service:
+       name: containerd
+       state: restarted
+
+
+  

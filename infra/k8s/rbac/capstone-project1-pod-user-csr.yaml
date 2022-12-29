@@ -1,0 +1,12 @@
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: easypay-pod-user
+spec:
+  groups:
+    - system:authenticated
+  # request: $(cat easypay-pod-user.csr | base64 | tr -d '\n')
+  request: __CSR___
+  usages:
+  - client auth
+  signerName: kubernetes.io/kube-apiserver-client

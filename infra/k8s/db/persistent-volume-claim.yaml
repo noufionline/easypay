@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: easypay-postgres-pvc
+  namespace: easypay
+  labels:
+    app: backend
+spec:
+  volumeName: easypay-postgres-pv
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
