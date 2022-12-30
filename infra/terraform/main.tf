@@ -371,13 +371,16 @@ resource "aws_instance" "controller" {
   }
 }
 
+
+
+
 resource "aws_instance" "worker" {
   count                       = "${length(var.worker_ips)}"
   ami                         = "${data.aws_ami.ubuntu.id}"
   associate_public_ip_address = true
   key_name                    = "${aws_key_pair.k8s.key_name}"
   vpc_security_group_ids      = ["${aws_security_group.worker.id}"]
-  instance_type               = "t2.medium"
+  instance_type               = "t2.micro"
   private_ip                  = "${var.worker_ips[count.index]}"
   subnet_id                   = "${aws_subnet.k8s.id}"
   source_dest_check           = false
