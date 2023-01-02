@@ -36,14 +36,11 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - nodes/metrics
-  verbs:
-  - get
-- apiGroups:
-  - ""
-  resources:
   - pods
   - nodes
+  - nodes/stats
+  - namespaces
+  - configmaps
   verbs:
   - get
   - list
@@ -134,12 +131,11 @@ spec:
       - args:
         - --cert-dir=/tmp
         - --secure-port=4443
-        - --kubelet-preferred-address-types=InternalDNS,InternalIP,ExternalDNS,ExternalIP,Hostname
+        - --kubelet-preferred-address-types=InternalIP
         - --kubelet-use-node-status-port
         - --metric-resolution=15s
         - --kubelet-insecure-tls
-        - --v=6
-        image: k8s.gcr.io/metrics-server/metrics-server:v0.6.2
+        image: k8s.gcr.io/metrics-server/metrics-server:v0.5.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -166,7 +162,6 @@ spec:
             cpu: 100m
             memory: 200Mi
         securityContext:
-          allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           runAsNonRoot: true
           runAsUser: 1000
@@ -180,22 +175,6 @@ spec:
       volumes:
       - emptyDir: {}
         name: tmp-dir
-      hostAliases:
-        - ip: 172.16.16.101
-          hostnames:
-           - k8s-master1
-        - ip: 172.16.16.201
-          hostnames:
-           - k8s-worker1
-        - ip: 172.16.16.202
-          hostnames:
-           - k8s-worker2
-        - ip: 172.16.16.203
-          hostnames:
-           - k8s-worker3
-
-
-
 ---
 apiVersion: apiregistration.k8s.io/v1
 kind: APIService
