@@ -45,4 +45,4 @@ spec:
               cpu: "500m"
             requests:
               memory: "100"    # minimum amount of ram available in a Pod
-              cpu: "2000m"
+              cpu: "1000m"
