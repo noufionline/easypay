@@ -1,22 +1,52 @@
-kubectl apply -f easypay-pod-user-csr.yaml
+
+echo "[TASK 1] Create Certificate Request"
+echo
+kubectl apply -f easypay-user-csr.yaml
+echo
 kubectl get csr
 
-kubectl certificate approve easypay-pod-user
+echo
 
+echo "[TASK 2] Approve Certificate Request"
+echo
+kubectl certificate approve easypay-user
+echo
 echo "waiting ...."
+echo
+sleep 10
+echo
+echo "[TASK 3] Create Role"
+echo
+kubectl apply -f easypay-create-role.yaml
 
-sleep 20
+echo "List Role...."
+echo
+kubectl get roles -n easypay....
 
-kubectl apply -f easypay-role.yaml
 
-kubectl get roles -n easypay
+echo "[TASK 4] Create Role Binding"
+echo
+kubectl apply -f easypay-create-role-binding.yaml
 
-kubectl apply -f easypay-roleBinding.yaml
+echo
 
+echo "List Role Binding...."
+echo
 kubectl get rolebindings -n easypay
 
-kubectl describe rolebinding easypay-pod-role-rolebinding -n easypay
+echo
+echo "Describe Role Binding...."
+echo
 
-kubectl auth can-i list pods --as easypay-pod-user -n easypay
+kubectl describe rolebinding easypay-user-role-binding -n easypay
 
-kubectl auth can-i create pods --as easypay-pod-user -n easypay
+
+echo
+echo "[TASK 5] Check whether user can List Pods?"
+echo
+kubectl auth can-i list pods --as easypay-user -n easypay
+
+echo
+echo "[TASK 6] Check whether user can Create Pods?"
+echo
+kubectl auth can-i create pods --as easypay-user -n easypay

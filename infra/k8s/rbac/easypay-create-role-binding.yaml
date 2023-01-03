@@ -1,13 +1,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: easypay-pod-role-rolebinding
+  name: easypay-user-role-binding
   namespace: easypay
 subjects:
 - kind: User
-  name: easypay-pod-user
+  name: easypay-user
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
-  name: easypay-pod-role
+  name: easypay-role
   apiGroup: rbac.authorization.k8s.io

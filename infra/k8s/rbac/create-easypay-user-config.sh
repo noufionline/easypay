@@ -2,7 +2,7 @@
 
 set -x
 
-user='easypay-pod-user'
+user='easypay-user'
 namespace='easypay'
 
 CCDATA='client-certificate-data:.*$'
