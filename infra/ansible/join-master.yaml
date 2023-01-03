@@ -6,7 +6,16 @@
   connection: ssh
 
   tasks:
-  
+
+  - name: Install git (to clone the repo) and jq (to pretty print the api json output).
+    package:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    loop:
+      - git
+      - jq
+
   - name: Intilizing Kubernetes Cluster
     command: sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=all 
     run_once: true
