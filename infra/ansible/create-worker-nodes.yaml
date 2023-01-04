@@ -44,4 +44,5 @@
        dest: /home/noufal/.bashrc
        line: 'source <(kubectl completion bash)'
        insertafter: EOF
+       
 ...
