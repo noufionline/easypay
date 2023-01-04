@@ -29,7 +29,7 @@ resource "aws_internet_gateway" "k8s" {
   }
 }
 
-resource "aws_route_table" "k8s" {image.png
+resource "aws_route_table" "k8s" {
   vpc_id = "${aws_vpc.k8s.id}"
 
   route {
