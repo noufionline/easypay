@@ -12,20 +12,6 @@ resource "aws_vpc" "k8s" {
   }
 }
 
-# resource "aws_vpc_dhcp_options" "k8s" {
-#   domain_name         = "us-east-2.compute.internal"
-#   domain_name_servers = ["AmazonProvidedDNS"]
-
-#   tags = {
-#     Name = "k8s-vpc-dhcp-options"
-#   }
-# }
-
-# resource "aws_vpc_dhcp_options_association" "k8s" {
-#   vpc_id          = "${aws_vpc.k8s.id}"
-#   dhcp_options_id = "${aws_vpc_dhcp_options.k8s.id}"
-# }
-
 resource "aws_subnet" "k8s" {
   vpc_id     = "${aws_vpc.k8s.id}"
   cidr_block = "172.16.16.0/24"
@@ -43,7 +29,7 @@ resource "aws_internet_gateway" "k8s" {
   }
 }
 
-resource "aws_route_table" "k8s" {
+resource "aws_route_table" "k8s" {image.png
   vpc_id = "${aws_vpc.k8s.id}"
 
   route {
@@ -119,7 +105,7 @@ resource "aws_security_group_rule" "controller-apiserver" {
 
   type        = "ingress"
   protocol    = "tcp"
-  from_port   = 6443
+  from_port   = 0
   to_port     = 6443
   cidr_blocks = ["0.0.0.0/0"]
 }
@@ -244,8 +230,8 @@ resource "aws_security_group_rule" "worker-nodeport-services" {
 
   type      = "ingress"
   protocol  = "tcp"
-  from_port = 30000
-  to_port   = 32767
+  from_port = 0
+  to_port   = 30001
   cidr_blocks      = ["0.0.0.0/0"] 
 }
 resource "aws_security_group_rule" "worker-ssh" {
