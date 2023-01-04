@@ -16,7 +16,7 @@ namespace EasyPay.WebApi.Controllers
     [Route("api/increase-cpu-load")]
     public class CpuLoadController: Controller{
         [HttpGet]
-        public async IActionResult Get(){
+        public IActionResult Get(){
             int x=0;
             for(int i=0;i<=1000000; i++){
                 x+=Math.Sqrt(i);
