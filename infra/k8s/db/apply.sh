@@ -1,4 +1,8 @@
 #!/bin/bash
+echo
+echo "Creating Namespace (easypay)"
+echo
+kubectl apply -f namespace.yaml
 
 echo
 echo "[TASK 1] Creating Network Policy (easypay)"

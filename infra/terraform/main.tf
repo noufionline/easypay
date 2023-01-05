@@ -177,7 +177,15 @@ resource "aws_security_group_rule" "controller-ssh" {
 }
 
 
+resource "aws_security_group_rule" "controller-nodeport-services" {
+  security_group_id = aws_security_group.controller.id
 
+  type      = "ingress"
+  protocol  = "tcp"
+  from_port = 80
+  to_port   = 30001
+  cidr_blocks      = ["0.0.0.0/0"] 
+}
 
 
 resource "aws_security_group_rule" "controller-egress" {
@@ -230,7 +238,7 @@ resource "aws_security_group_rule" "worker-nodeport-services" {
 
   type      = "ingress"
   protocol  = "tcp"
-  from_port = 0
+  from_port = 80
   to_port   = 30001
   cidr_blocks      = ["0.0.0.0/0"] 
 }
