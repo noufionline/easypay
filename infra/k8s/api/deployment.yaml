@@ -39,12 +39,6 @@ spec:
               value: Host=easypay-backend-service;Database=$(POSTGRES_DB);Username=$(POSTGRES_USER);Password=$(POSTGRES_PASSWORD)
             - name: ASPNETCORE_URLS
               value: http://+:8080
-            # - name: ASPNETCORE_URLS
-            #   value: http://+:8080;https://+:8443
-            # - name: ASPNETCORE_Kestrel__Certificates__Default__Path
-            #   value: /https/aspnetapp.pfx
-            # - name: ASPNETCORE_Kestrel__Certificates__Default__Password
-            #   value: /https/aspnetapp.pfx
           resources:
             limits:
               cpu: "500m"
