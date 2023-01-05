@@ -1,6 +1,6 @@
 ---
 - hosts: master
-  remote_user: noufal
+  remote_user: easypayadm
   become: yes
   gather_facts: yes
   

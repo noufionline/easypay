@@ -3,7 +3,7 @@
   remote_user: ubuntu 
   become: yes
   vars:
-    new_user: noufal
+    new_user: easypayadm
   tasks:
     - name: creating group {{ new_user }}
       group:
@@ -17,7 +17,7 @@
         createhome: yes
         shell: /bin/bash
         append: yes
-        password: "{{ 'noufal' | password_hash('sha512') }}"
+        password: "{{ 'easypayadm' | password_hash('sha512') }}"
         state: present
         groups: "{{new_user}},sudo"  
 

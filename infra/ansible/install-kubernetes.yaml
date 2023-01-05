@@ -1,5 +1,5 @@
 - hosts: all
-  remote_user: noufal 
+  remote_user: easypayadm 
   become: yes
   tasks:
    - name: Remove swapfile from /etc/fstab
