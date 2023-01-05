@@ -8,7 +8,7 @@ networks:
 
 services:
   easypay.webapi:
-    image: ${DOCKER_REGISTRY-}easypaywebapi
+    image: ${DOCKER_REGISTRY-}noufionline/easypay:2.0
     depends_on:
       - "easypay-db-service"
     build:
@@ -19,6 +19,12 @@ services:
       - 8443:443
     environment:
       DB_CONNECTION_STRING: "host=easypay-db-service;port=5432;database=easypay;username=easypay;password=easypay"
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "Pa55w0rd"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/aspnetapp.pfx"
+    volumes:
+      - ~/.aspnet/https:/https:ro #this is very important  
     networks:
       - easypay-prod
 

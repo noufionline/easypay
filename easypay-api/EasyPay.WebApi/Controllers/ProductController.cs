@@ -17,12 +17,12 @@ namespace EasyPay.WebApi.Controllers
     public class CpuLoadController: Controller{
         [HttpGet]
         public IActionResult Get(){
-            int x=0;
-            for(int i=0;i<=1000000; i++){
+            double x=0;
+            for(var i=0;i<=1000000; i++){
                 x+=Math.Sqrt(i);
             }
 
-            return Ok("Processing Completed!!!\n");
+            return Ok("Ok!!!\n");
         }
     }
 

@@ -8,11 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["EasyPay.WebApi.csproj", "."]
-RUN dotnet restore "./EasyPay.WebApi.csproj"
+RUN dotnet restore "EasyPay.WebApi.csproj"
 COPY . .
 WORKDIR "/src/."
-
-RUN dotnet dev-certs https
 
 RUN dotnet build "EasyPay.WebApi.csproj" -c Release -o /app/build
 
