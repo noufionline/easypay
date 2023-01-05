@@ -22,7 +22,7 @@ namespace EasyPay.WebApi.Controllers
                 x+=Math.Sqrt(i);
             }
 
-            return Ok("Ok!!!\n");
+            return Ok("Ok!!!");
         }
     }
 
