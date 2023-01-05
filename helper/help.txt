@@ -3,3 +3,5 @@ https://gist.github.com/dahlsailrunner/1a47b0e38f6e3ba64d4d61835c73b7e2
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
+kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://172.16.16.101:30001/api/increase-cpu-load; done"
+
