@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: easypay-api
-          image: noufionline/easypay-api:1.0
+          image: noufionline/easypay-api:2.0
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -38,11 +38,13 @@ spec:
             - name: ConnectionStrings__EasyPayContext
               value: Host=easypay-backend-service;Database=$(POSTGRES_DB);Username=$(POSTGRES_USER);Password=$(POSTGRES_PASSWORD)
             - name: ASPNETCORE_URLS
-              value: http://+:8080;https://+:8443
-            - name: ASPNETCORE_Kestrel__Certificates__Default__Path
-              value: /https/aspnetapp.pfx
-            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
-              value: /https/aspnetapp.pfx
+              value: http://+:8080
+            # - name: ASPNETCORE_URLS
+            #   value: http://+:8080;https://+:8443
+            # - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+            #   value: /https/aspnetapp.pfx
+            # - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+            #   value: /https/aspnetapp.pfx
           resources:
             limits:
               cpu: "500m"
