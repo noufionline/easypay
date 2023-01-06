@@ -1,5 +1,5 @@
 #Connect to Database
-kubectl exec -it -n easypay <<dbpod>> --  psql -h localhost -U easypay --password -p 5432 easypay
+kubectl exec -it -n easypay easypay-db-5db57668d4-j724g --  psql -h localhost -U easypay --password -p 5432 easypay
 
 
 #Connect To API

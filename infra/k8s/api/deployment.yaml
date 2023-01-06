@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: easypay-api
-          image: noufionline/easypay-api:2.0
+          image: noufionline/easypay:2.0
           ports:
             - containerPort: 8080
               protocol: TCP
