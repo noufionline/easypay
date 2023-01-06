@@ -1,0 +1,44 @@
+  All projects are up-to-date for restore.
+  EasyPay.WebApi -> /src/bin/Release/net6.0/EasyPay.WebApi.dll
+  EasyPay.WebApi -> /app/publish/
+Removing intermediate container 990a1a99e482
+ ---> 1999324e6dd9
+Step 14/17 : FROM base AS final
+ ---> bd04c474057c
+Step 15/17 : WORKDIR /app
+ ---> Running in f43f2766f5fa
+Removing intermediate container f43f2766f5fa
+ ---> f3ac68c4a910
+Step 16/17 : COPY --from=publish /app/publish .
+ ---> c94c75abebef
+Step 17/17 : ENTRYPOINT ["dotnet", "EasyPay.WebApi.dll"]
+ ---> Running in 8104d5afc6d4
+Removing intermediate container 8104d5afc6d4
+ ---> a700ff754a30
+Successfully built a700ff754a30
+Successfully tagged noufionline/easypay:2.0
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+[01:39 AM]-[noufal@ubuntu]-[~/.../easypay-api/EasyPay.WebApi]- |main ✓|
+$ docker image ls
+REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
+<none>                            <none>    1999324e6dd9   10 seconds ago   893MB
+noufionline/easypay               2.0       a700ff754a30   10 seconds ago   219MB
+mcr.microsoft.com/dotnet/sdk      6.0       53112f060c74   2 weeks ago      738MB
+mcr.microsoft.com/dotnet/aspnet   6.0       a3a54ba9f84c   2 weeks ago      208MB
+
+[01:39 AM]-[noufal@ubuntu]-[~/.../easypay-api/EasyPay.WebApi]- |main ✓|
+$ docker push noufionline/easypay:2.0
+The push refers to repository [docker.io/noufionline/easypay]
+fdf3085b503b: Pushed 
+8e8ab45f8833: Pushed 
+b400c1fbdfd3: Layer already exists 
+92b218f57c01: Layer already exists 
+f1307d47d63a: Layer already exists 
+5047e9061598: Layer already exists 
+8a70d251b653: Layer already exists 
+2.0: digest: sha256:7fbf6b24061b69c3030e1401e194a9aac805219047625cf1a665317a60ffed49 size: 1788
+
+[01:40 AM]-[noufal@ubuntu]-[~/.../easypay-api/EasyPay.WebApi]- |main ✓|
+$ 
