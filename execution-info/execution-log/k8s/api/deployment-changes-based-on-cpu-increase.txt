@@ -1,0 +1,119 @@
+[10:37 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl get hpa -n easypay --watch
+NAME          REFERENCE                TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+easypay-api   Deployment/easypay-api   0%/50%    1         10        1          5m42s
+easypay-api   Deployment/easypay-api   18%/50%   1         10        1          6m
+easypay-api   Deployment/easypay-api   187%/50%   1         10        1          6m15s
+easypay-api   Deployment/easypay-api   187%/50%   1         10        4          6m30s
+easypay-api   Deployment/easypay-api   159%/50%   1         10        4          6m45s
+easypay-api   Deployment/easypay-api   53%/50%    1         10        4          7m
+easypay-api   Deployment/easypay-api   46%/50%    1         10        4          7m15s
+easypay-api   Deployment/easypay-api   45%/50%    1         10        4          7m30s
+easypay-api   Deployment/easypay-api   43%/50%    1         10        4          7m45s
+easypay-api   Deployment/easypay-api   42%/50%    1         10        4          8m
+easypay-api   Deployment/easypay-api   41%/50%    1         10        4          8m16s
+easypay-api   Deployment/easypay-api   42%/50%    1         10        4          8m46s
+easypay-api   Deployment/easypay-api   45%/50%    1         10        4          9m1s
+easypay-api   Deployment/easypay-api   43%/50%    1         10        4          9m16s
+easypay-api   Deployment/easypay-api   42%/50%    1         10        4          9m31s
+easypay-api   Deployment/easypay-api   40%/50%    1         10        4          9m46s
+easypay-api   Deployment/easypay-api   41%/50%    1         10        4          10m
+easypay-api   Deployment/easypay-api   55%/50%    1         10        4          10m
+easypay-api   Deployment/easypay-api   84%/50%    1         10        5          10m
+easypay-api   Deployment/easypay-api   85%/50%    1         10        7          10m
+easypay-api   Deployment/easypay-api   64%/50%    1         10        7          11m
+easypay-api   Deployment/easypay-api   62%/50%    1         10        7          11m
+easypay-api   Deployment/easypay-api   45%/50%    1         10        9          11m
+easypay-api   Deployment/easypay-api   4%/50%     1         10        9          11m
+easypay-api   Deployment/easypay-api   0%/50%     1         10        9          12m
+
+
+[10:39 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main U:1 ✗|
+$ kubectl get pod -n easypay
+NAME                          READY   STATUS              RESTARTS   AGE
+easypay-api-d4f895cf9-97q6w   1/1     Running             0          11m
+easypay-api-d4f895cf9-dmmpg   0/1     ContainerCreating   0          6s
+easypay-api-d4f895cf9-hj9sr   1/1     Running             0          6s
+easypay-api-d4f895cf9-pq58n   0/1     ContainerCreating   0          6s
+easypay-db-5db57668d4-j724g   1/1     Running             0          158m
+
+[10:43 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main U:1 ✗|
+$ kubectl get pod -n easypay --watch
+NAME                          READY   STATUS    RESTARTS   AGE
+easypay-api-d4f895cf9-97q6w   1/1     Running   0          12m
+easypay-api-d4f895cf9-dmmpg   1/1     Running   0          58s
+easypay-api-d4f895cf9-hj9sr   1/1     Running   0          58s
+easypay-api-d4f895cf9-pq58n   1/1     Running   0          58s
+easypay-db-5db57668d4-j724g   1/1     Running   0          159m
+easypay-api-d4f895cf9-bsdr7   0/1     Pending   0          0s
+easypay-api-d4f895cf9-bsdr7   0/1     Pending   0          0s
+easypay-api-d4f895cf9-bsdr7   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-bsdr7   0/1     ContainerCreating   0          1s
+easypay-api-d4f895cf9-bsdr7   1/1     Running             0          2s
+easypay-api-d4f895cf9-ndb8w   0/1     Pending             0          0s
+easypay-api-d4f895cf9-ndb8w   0/1     Pending             0          0s
+easypay-api-d4f895cf9-qk7wj   0/1     Pending             0          0s
+easypay-api-d4f895cf9-qk7wj   0/1     Pending             0          0s
+easypay-api-d4f895cf9-qk7wj   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-ndb8w   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-ndb8w   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-qk7wj   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-ndb8w   1/1     Running             0          1s
+easypay-api-d4f895cf9-qk7wj   1/1     Running             0          2s
+easypay-api-d4f895cf9-jjddn   0/1     Pending             0          0s
+easypay-api-d4f895cf9-jjddn   0/1     Pending             0          0s
+easypay-api-d4f895cf9-48f9d   0/1     Pending             0          0s
+easypay-api-d4f895cf9-48f9d   0/1     Pending             0          0s
+easypay-api-d4f895cf9-jjddn   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-48f9d   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-jjddn   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-48f9d   0/1     ContainerCreating   0          0s
+easypay-api-d4f895cf9-48f9d   1/1     Running             0          1s
+easypay-api-d4f895cf9-jjddn   1/1     Running             0          1s
+easypay-api-d4f895cf9-hj9sr   1/1     Terminating         0          10m
+easypay-api-d4f895cf9-48f9d   1/1     Terminating         0          5m15s
+easypay-api-d4f895cf9-ndb8w   1/1     Terminating         0          6m
+easypay-api-d4f895cf9-bsdr7   1/1     Terminating         0          6m15s
+easypay-api-d4f895cf9-qk7wj   1/1     Terminating         0          6m
+easypay-api-d4f895cf9-dmmpg   1/1     Terminating         0          10m
+easypay-api-d4f895cf9-pq58n   1/1     Terminating         0          10m
+easypay-api-d4f895cf9-jjddn   1/1     Terminating         0          5m15s
+easypay-api-d4f895cf9-hj9sr   1/1     Terminating         0          10m
+easypay-api-d4f895cf9-jjddn   1/1     Terminating         0          5m16s
+easypay-api-d4f895cf9-ndb8w   1/1     Terminating         0          6m1s
+easypay-api-d4f895cf9-pq58n   1/1     Terminating         0          10m
+easypay-api-d4f895cf9-48f9d   1/1     Terminating         0          5m16s
+easypay-api-d4f895cf9-qk7wj   1/1     Terminating         0          6m1s
+easypay-api-d4f895cf9-dmmpg   1/1     Terminating         0          10m
+easypay-api-d4f895cf9-bsdr7   1/1     Terminating         0          6m16s
+easypay-api-d4f895cf9-48f9d   0/1     Terminating         0          5m16s
+easypay-api-d4f895cf9-pq58n   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-pq58n   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-pq58n   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-ndb8w   0/1     Terminating         0          6m2s
+easypay-api-d4f895cf9-ndb8w   0/1     Terminating         0          6m2s
+easypay-api-d4f895cf9-ndb8w   0/1     Terminating         0          6m2s
+easypay-api-d4f895cf9-48f9d   0/1     Terminating         0          5m17s
+easypay-api-d4f895cf9-48f9d   0/1     Terminating         0          5m17s
+easypay-api-d4f895cf9-jjddn   0/1     Terminating         0          5m17s
+easypay-api-d4f895cf9-jjddn   0/1     Terminating         0          5m17s
+easypay-api-d4f895cf9-jjddn   0/1     Terminating         0          5m17s
+easypay-api-d4f895cf9-hj9sr   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-hj9sr   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-hj9sr   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-bsdr7   0/1     Terminating         0          6m17s
+easypay-api-d4f895cf9-bsdr7   0/1     Terminating         0          6m17s
+easypay-api-d4f895cf9-bsdr7   0/1     Terminating         0          6m17s
+easypay-api-d4f895cf9-dmmpg   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-dmmpg   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-dmmpg   0/1     Terminating         0          10m
+easypay-api-d4f895cf9-qk7wj   0/1     Terminating         0          6m2s
+easypay-api-d4f895cf9-qk7wj   0/1     Terminating         0          6m2s
+easypay-api-d4f895cf9-qk7wj   0/1     Terminating         0          6m2s
+
+
+[10:55 AM]-[easypayadm@k8s-master1]-[~]-
+$ kubectl get pod -n easypay
+NAME                          READY   STATUS    RESTARTS   AGE
+easypay-api-d4f895cf9-97q6w   1/1     Running   0          23m
+easypay-db-5db57668d4-j724g   1/1     Running   0          170m

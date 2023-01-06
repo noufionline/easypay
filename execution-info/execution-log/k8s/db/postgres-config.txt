@@ -1,0 +1,27 @@
+[07:47 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl apply -f postgres-config.yaml
+configmap/postgres-config created
+
+[07:48 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl get configmap -n easypay
+NAME               DATA   AGE
+kube-root-ca.crt   1      5m49s
+postgres-config    1      28s
+
+[07:48 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl describe configmap postgres-config -n easypay
+Name:         postgres-config
+Namespace:    easypay
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+POSTGRES_DB:
+----
+easypay
+
+BinaryData
+====
+
+Events:  <none>

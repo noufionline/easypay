@@ -1,0 +1,22 @@
+
+[11:46 AM]-[easypayadm@k8s-master1]-[~/easypay]- |main U:1 ✗|
+$ cd infra/k8s/rbac/
+/home/easypayadm/easypay/infra/k8s/rbac
+
+[11:46 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl apply -f easypay-user-csr.yaml
+certificatesigningrequest.certificates.k8s.io/easypay-user created
+
+[11:46 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl get csr
+NAME           AGE   SIGNERNAME                            REQUESTOR          REQUESTEDDURATION   CONDITION
+easypay-user   7s    kubernetes.io/kube-apiserver-client   kubernetes-admin   <none>              Pending
+
+[11:46 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl certificate approve easypay-user
+certificatesigningrequest.certificates.k8s.io/easypay-user approved
+
+[11:47 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl get csr
+NAME           AGE   SIGNERNAME                            REQUESTOR          REQUESTEDDURATION   CONDITION
+easypay-user   36s   kubernetes.io/kube-apiserver-client   kubernetes-admin   <none>              Approved,Issued

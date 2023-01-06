@@ -1,0 +1,55 @@
+
+[08:04 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl apply -f deployment.yaml
+deployment.apps/easypay-db created
+
+[08:04 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl get deploy -n easypay
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+easypay-db   0/1     1            0           9s
+
+[08:04 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl describe deploy easypay-db -n easypay
+Name:                   easypay-db
+Namespace:              easypay
+CreationTimestamp:      Fri, 06 Jan 2023 08:04:44 +0000
+Labels:                 <none>
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=backend
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=backend
+  Containers:
+   easypay-backend:
+    Image:      postgres:latest
+    Port:       5432/TCP
+    Host Port:  0/TCP
+    Limits:
+      memory:  500Mi
+    Requests:
+      memory:  100
+    Environment:
+      POSTGRES_DB:        <set to the key 'POSTGRES_DB' of config map 'postgres-config'>    Optional: false
+      POSTGRES_USER:      <set to the key 'POSTGRES_USER' in secret 'postgres-secret'>      Optional: false
+      POSTGRES_PASSWORD:  <set to the key 'POSTGRES_PASSWORD' in secret 'postgres-secret'>  Optional: false
+    Mounts:
+      /var/lib/postgresql/data from easypay-postgres-data-storage (rw)
+  Volumes:
+   easypay-postgres-data-storage:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  easypay-postgres-pvc
+    ReadOnly:   false
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   easypay-db-5db57668d4 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  29s   deployment-controller  Scaled up replica set easypay-db-5db57668d4 to 1

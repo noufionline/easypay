@@ -1,0 +1,7 @@
+[11:55 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl auth can-i list pods --as easypay-user -n easypay
+yes
+
+[11:55 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl auth can-i create pods --as easypay-user -n easypay
+yes

@@ -1,0 +1,24 @@
+[07:44 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl apply -f network-policy.yaml
+networkpolicy.networking.k8s.io/frontend-to-backend-access created
+
+[07:45 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl get netpol -n easypay
+NAME                         POD-SELECTOR   AGE
+frontend-to-backend-access   app=backend    4s
+
+[07:45 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl describe netpol frontend-to-backend-access -n easypay
+Name:         frontend-to-backend-access
+Namespace:    easypay
+Created on:   2023-01-06 07:45:00 +0000 UTC
+Labels:       <none>
+Annotations:  <none>
+Spec:
+  PodSelector:     app=backend
+  Allowing ingress traffic:
+    To Port: 5432/TCP
+    From:
+      PodSelector: app=frontend
+  Not affecting egress traffic
+  Policy Types: Ingress

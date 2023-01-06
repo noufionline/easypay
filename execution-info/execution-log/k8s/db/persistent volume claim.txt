@@ -1,0 +1,24 @@
+[07:58 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl apply -f persistent-volume-claim.yaml
+persistentvolumeclaim/easypay-postgres-pvc created
+
+[07:58 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl get pvc -n easypay
+NAME                   STATUS   VOLUME                CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+easypay-postgres-pvc   Bound    easypay-postgres-pv   5Gi        RWX            manual         27s
+
+[07:58 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl describe pvc easypay-postgres-pvc -n easypay
+Name:          easypay-postgres-pvc
+Namespace:     easypay
+StorageClass:  manual
+Status:        Bound
+Volume:        easypay-postgres-pv
+Labels:        app=backend
+Annotations:   pv.kubernetes.io/bind-completed: yes
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      5Gi
+Access Modes:  RWX
+VolumeMode:    Filesystem
+Used By:       <none>
+Events:        <none>

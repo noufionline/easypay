@@ -1,0 +1,21 @@
+[11:52 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl apply -f easypay-create-role-binding.yaml
+rolebinding.rbac.authorization.k8s.io/easypay-user-role-binding created
+
+[11:52 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl get rolebindings -n easypay
+NAME                        ROLE                AGE
+easypay-user-role-binding   Role/easypay-role   14s
+
+[11:53 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl describe rolebinding easypay-user-role-binding -n easypay
+Name:         easypay-user-role-binding
+Labels:       <none>
+Annotations:  <none>
+Role:
+  Kind:  Role
+  Name:  easypay-role
+Subjects:
+  Kind  Name          Namespace
+  ----  ----          ---------
+  User  easypay-user

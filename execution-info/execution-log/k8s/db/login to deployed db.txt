@@ -1,0 +1,132 @@
+
+[08:08 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl exec -it -n easypay easypay-db-5db57668d4-j724g --  psql -h localhost -U easypay --password -p 5432 easypay
+Password:
+psql (15.1 (Debian 15.1-1.pgdg110+1))
+Type "help" for help.
+
+easypay=# \dt
+Did not find any relations.
+easypay=# \dt *.*
+                           List of relations
+       Schema       |           Name           |    Type     |  Owner
+--------------------+--------------------------+-------------+---------
+ information_schema | sql_features             | table       | easypay
+ information_schema | sql_implementation_info  | table       | easypay
+ information_schema | sql_parts                | table       | easypay
+ information_schema | sql_sizing               | table       | easypay
+ pg_catalog         | pg_aggregate             | table       | easypay
+ pg_catalog         | pg_am                    | table       | easypay
+ pg_catalog         | pg_amop                  | table       | easypay
+ pg_catalog         | pg_amproc                | table       | easypay
+ pg_catalog         | pg_attrdef               | table       | easypay
+ pg_catalog         | pg_attribute             | table       | easypay
+ pg_catalog         | pg_auth_members          | table       | easypay
+ pg_catalog         | pg_authid                | table       | easypay
+ pg_catalog         | pg_cast                  | table       | easypay
+ pg_catalog         | pg_class                 | table       | easypay
+ pg_catalog         | pg_collation             | table       | easypay
+ pg_catalog         | pg_constraint            | table       | easypay
+ pg_catalog         | pg_conversion            | table       | easypay
+ pg_catalog         | pg_database              | table       | easypay
+ pg_catalog         | pg_db_role_setting       | table       | easypay
+ pg_catalog         | pg_default_acl           | table       | easypay
+ pg_catalog         | pg_depend                | table       | easypay
+ pg_catalog         | pg_description           | table       | easypay
+ pg_catalog         | pg_enum                  | table       | easypay
+ pg_catalog         | pg_event_trigger         | table       | easypay
+ pg_catalog         | pg_extension             | table       | easypay
+ pg_catalog         | pg_foreign_data_wrapper  | table       | easypay
+ pg_catalog         | pg_foreign_server        | table       | easypay
+ pg_catalog         | pg_foreign_table         | table       | easypay
+ pg_catalog         | pg_index                 | table       | easypay
+ pg_catalog         | pg_inherits              | table       | easypay
+ pg_catalog         | pg_init_privs            | table       | easypay
+ pg_catalog         | pg_language              | table       | easypay
+ pg_catalog         | pg_largeobject           | table       | easypay
+ pg_catalog         | pg_largeobject_metadata  | table       | easypay
+ pg_catalog         | pg_namespace             | table       | easypay
+ pg_catalog         | pg_opclass               | table       | easypay
+ pg_catalog         | pg_operator              | table       | easypay
+ pg_catalog         | pg_opfamily              | table       | easypay
+ pg_catalog         | pg_parameter_acl         | table       | easypay
+ pg_catalog         | pg_partitioned_table     | table       | easypay
+ pg_catalog         | pg_policy                | table       | easypay
+ pg_catalog         | pg_proc                  | table       | easypay
+ pg_catalog         | pg_publication           | table       | easypay
+ pg_catalog         | pg_publication_namespace | table       | easypay
+ pg_catalog         | pg_publication_rel       | table       | easypay
+ pg_catalog         | pg_range                 | table       | easypay
+ pg_catalog         | pg_replication_origin    | table       | easypay
+ pg_catalog         | pg_rewrite               | table       | easypay
+ pg_catalog         | pg_seclabel              | table       | easypay
+ pg_catalog         | pg_sequence              | table       | easypay
+ pg_catalog         | pg_shdepend              | table       | easypay
+ pg_catalog         | pg_shdescription         | table       | easypay
+ pg_catalog         | pg_shseclabel            | table       | easypay
+ pg_catalog         | pg_statistic             | table       | easypay
+ pg_catalog         | pg_statistic_ext         | table       | easypay
+ pg_catalog         | pg_statistic_ext_data    | table       | easypay
+ pg_catalog         | pg_subscription          | table       | easypay
+ pg_catalog         | pg_subscription_rel      | table       | easypay
+ pg_catalog         | pg_tablespace            | table       | easypay
+ pg_catalog         | pg_transform             | table       | easypay
+ pg_catalog         | pg_trigger               | table       | easypay
+ pg_catalog         | pg_ts_config             | table       | easypay
+ pg_catalog         | pg_ts_config_map         | table       | easypay
+ pg_catalog         | pg_ts_dict               | table       | easypay
+ pg_catalog         | pg_ts_parser             | table       | easypay
+ pg_catalog         | pg_ts_template           | table       | easypay
+ pg_catalog         | pg_type                  | table       | easypay
+ pg_catalog         | pg_user_mapping          | table       | easypay
+ pg_toast           | pg_toast_1213            | TOAST table | easypay
+ pg_toast           | pg_toast_1247            | TOAST table | easypay
+ pg_toast           | pg_toast_1255            | TOAST table | easypay
+ pg_toast           | pg_toast_1260            | TOAST table | easypay
+ pg_toast           | pg_toast_1262            | TOAST table | easypay
+ pg_toast           | pg_toast_13370           | TOAST table | easypay
+ pg_toast           | pg_toast_13375           | TOAST table | easypay
+ pg_toast           | pg_toast_13380           | TOAST table | easypay
+ pg_toast           | pg_toast_13385           | TOAST table | easypay
+ pg_toast           | pg_toast_1417            | TOAST table | easypay
+ pg_toast           | pg_toast_1418            | TOAST table | easypay
+ pg_toast           | pg_toast_2328            | TOAST table | easypay
+ pg_toast           | pg_toast_2396            | TOAST table | easypay
+ pg_toast           | pg_toast_2600            | TOAST table | easypay
+ pg_toast           | pg_toast_2604            | TOAST table | easypay
+ pg_toast           | pg_toast_2606            | TOAST table | easypay
+ pg_toast           | pg_toast_2609            | TOAST table | easypay
+ pg_toast           | pg_toast_2612            | TOAST table | easypay
+ pg_toast           | pg_toast_2615            | TOAST table | easypay
+ pg_toast           | pg_toast_2618            | TOAST table | easypay
+ pg_toast           | pg_toast_2619            | TOAST table | easypay
+ pg_toast           | pg_toast_2620            | TOAST table | easypay
+ pg_toast           | pg_toast_2964            | TOAST table | easypay
+ pg_toast           | pg_toast_3079            | TOAST table | easypay
+ pg_toast           | pg_toast_3118            | TOAST table | easypay
+ pg_toast           | pg_toast_3256            | TOAST table | easypay
+ pg_toast           | pg_toast_3350            | TOAST table | easypay
+ pg_toast           | pg_toast_3381            | TOAST table | easypay
+ pg_toast           | pg_toast_3394            | TOAST table | easypay
+ pg_toast           | pg_toast_3429            | TOAST table | easypay
+ pg_toast           | pg_toast_3456            | TOAST table | easypay
+ pg_toast           | pg_toast_3466            | TOAST table | easypay
+ pg_toast           | pg_toast_3592            | TOAST table | easypay
+ pg_toast           | pg_toast_3596            | TOAST table | easypay
+ pg_toast           | pg_toast_3600            | TOAST table | easypay
+ pg_toast           | pg_toast_6000            | TOAST table | easypay
+ pg_toast           | pg_toast_6100            | TOAST table | easypay
+ pg_toast           | pg_toast_6106            | TOAST table | easypay
+ pg_toast           | pg_toast_6243            | TOAST table | easypay
+ pg_toast           | pg_toast_826             | TOAST table | easypay
+(108 rows)
+
+easypay=# \dt
+Did not find any relations.
+easypay=# \c easypay
+Password:
+You are now connected to database "easypay" as user "easypay".
+easypay=# select * from products
+easypay-# select * from products;
+ERROR:  syntax error at or near "select"
+LINE 2: select * from products;

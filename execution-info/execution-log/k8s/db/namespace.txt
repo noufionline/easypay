@@ -1,0 +1,12 @@
+[07:15 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl apply -f namespace.yaml
+namespace/easypay created
+
+[07:15 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl get ns
+NAME              STATUS   AGE
+default           Active   42m
+easypay           Active   12s
+kube-node-lease   Active   42m
+kube-public       Active   42m
+kube-system       Active   42m

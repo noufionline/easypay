@@ -1,0 +1,67 @@
+[12:08 PM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl get pods -n kube-system | grep etcd
+etcd-k8s-master1                           1/1     Running   0          5h34m
+
+[12:08 PM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl exec -it etcd-k8s-master1 -n kube-system -- /bin/sh -c 'ETCDCTL_API=3 /usr/local/bin/etcd --version' | head
+etcd Version: 3.5.6
+Git SHA: cecbe35ce
+Go Version: go1.16.15
+Go OS/Arch: linux/amd64
+
+[12:08 PM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ export RELEASE=3.5.6
+
+[12:08 PM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ wget https://github.com/etcd-io/etcd/releases/download/v${RELEASE}/etcd-v${RELEASE}-linux-amd64.tar.gz
+--2023-01-06 12:08:56--  https://github.com/etcd-io/etcd/releases/download/v3.5.6/etcd-v3.5.6-linux-amd64.tar.gz
+Resolving github.com (github.com)... 140.82.114.4
+Connecting to github.com (github.com)|140.82.114.4|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://objects.githubusercontent.com/github-production-release-asset-2e65be/11225014/37a10a19-d9a6-4476-8d95-80aaebcc699c?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230106T120856Z&X-Amz-Expires=300&X-Amz-Signature=c43b3b4d9d96ad0c7e3f75899442a91e7e03e5dea961262044bf6ffc5863c900&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=11225014&response-content-disposition=attachment%3B%20filename%3Detcd-v3.5.6-linux-amd64.tar.gz&response-content-type=application%2Foctet-stream [following]
+--2023-01-06 12:08:56--  https://objects.githubusercontent.com/github-production-release-asset-2e65be/11225014/37a10a19-d9a6-4476-8d95-80aaebcc699c?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230106T120856Z&X-Amz-Expires=300&X-Amz-Signature=c43b3b4d9d96ad0c7e3f75899442a91e7e03e5dea961262044bf6ffc5863c900&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=11225014&response-content-disposition=attachment%3B%20filename%3Detcd-v3.5.6-linux-amd64.tar.gz&response-content-type=application%2Foctet-stream
+Resolving objects.githubusercontent.com (objects.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to objects.githubusercontent.com (objects.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19492576 (19M) [application/octet-stream]
+Saving to: ‘etcd-v3.5.6-linux-amd64.tar.gz’
+
+etcd-v3.5.6-linux-amd64.tar.gz                       100%[===================================================================================================================>]  18.59M   105MB/s    in 0.2s
+
+2023-01-06 12:08:56 (105 MB/s) - ‘etcd-v3.5.6-linux-amd64.tar.gz’ saved [19492576/19492576]
+
+
+[12:08 PM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ?:1 ✗|
+$ tar -zxvf etcd-v${RELEASE}-linux-amd64.tar.gz
+etcd-v3.5.6-linux-amd64/
+etcd-v3.5.6-linux-amd64/README.md
+etcd-v3.5.6-linux-amd64/READMEv2-etcdctl.md
+etcd-v3.5.6-linux-amd64/etcdutl
+etcd-v3.5.6-linux-amd64/etcdctl
+etcd-v3.5.6-linux-amd64/Documentation/
+etcd-v3.5.6-linux-amd64/Documentation/README.md
+etcd-v3.5.6-linux-amd64/Documentation/dev-guide/
+etcd-v3.5.6-linux-amd64/Documentation/dev-guide/apispec/
+etcd-v3.5.6-linux-amd64/Documentation/dev-guide/apispec/swagger/
+etcd-v3.5.6-linux-amd64/Documentation/dev-guide/apispec/swagger/v3election.swagger.json
+etcd-v3.5.6-linux-amd64/Documentation/dev-guide/apispec/swagger/rpc.swagger.json
+etcd-v3.5.6-linux-amd64/Documentation/dev-guide/apispec/swagger/v3lock.swagger.json
+etcd-v3.5.6-linux-amd64/README-etcdutl.md
+etcd-v3.5.6-linux-amd64/README-etcdctl.md
+etcd-v3.5.6-linux-amd64/etcd
+
+[12:09 PM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ?:2 ✗|
+$ cd etcd-v3.5.6-linux-amd64/
+/home/easypayadm/easypay/infra/k8s/rbac/etcd-v3.5.6-linux-amd64
+
+[12:09 PM]-[easypayadm@k8s-master1]-[~/.../rbac/etcd-v3.5.6-linux-amd64]- |main U:1 ?:2 ✗|
+$ ls
+Documentation  README-etcdctl.md  README-etcdutl.md  README.md  READMEv2-etcdctl.md  etcd  etcdctl  etcdutl
+
+[12:09 PM]-[easypayadm@k8s-master1]-[~/.../rbac/etcd-v3.5.6-linux-amd64]- |main U:1 ?:2 ✗|
+$ sudo cp etcdctl /usr/local/bin
+
+[12:09 PM]-[easypayadm@k8s-master1]-[~/.../rbac/etcd-v3.5.6-linux-amd64]- |main U:1 ?:2 ✗|
+$ etcdctl version
+etcdctl version: 3.5.6
+API version: 3.5

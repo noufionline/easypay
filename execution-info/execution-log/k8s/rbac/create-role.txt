@@ -1,0 +1,19 @@
+
+[11:50 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl apply -f easypay-create-role.yaml
+role.rbac.authorization.k8s.io/easypay-role created
+
+[11:50 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl get roles -n easypay
+NAME           CREATED AT
+easypay-role   2023-01-06T11:50:47Z
+
+[11:50 AM]-[easypayadm@k8s-master1]-[~/.../k8s/rbac]- |main U:1 ✗|
+$ kubectl describe roles easypay-role -n easypay
+Name:         easypay-role
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  pods       []                 []              [create list get update delete]

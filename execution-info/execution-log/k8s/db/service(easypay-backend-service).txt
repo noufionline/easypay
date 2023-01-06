@@ -1,0 +1,33 @@
+
+[08:01 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl apply -f service.yaml
+service/easypay-backend-service created
+
+[08:01 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl get svc -n easypay
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+easypay-backend-service   ClusterIP   10.111.114.65   <none>        5432/TCP   11s
+
+[08:01 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl describe svc easypay-backend-service  -n easypay
+Name:              easypay-backend-service
+Namespace:         easypay
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=backend
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.111.114.65
+IPs:               10.111.114.65
+Port:              postgres  5432/TCP
+TargetPort:        5432/TCP
+Endpoints:         <none>
+Session Affinity:  None
+Events:            <none>
+
+
+[08:08 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl get pods -n easypay
+NAME                          READY   STATUS    RESTARTS   AGE
+easypay-db-5db57668d4-j724g   1/1     Running   0          3m41s

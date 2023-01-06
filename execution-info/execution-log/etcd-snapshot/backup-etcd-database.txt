@@ -1,0 +1,24 @@
+[12:18 PM]-[easypayadm@k8s-master1]-[~/.../rbac/etcd-v3.5.6-linux-amd64]- |main U:1 ?:2 ✗|
+$ sudo mkdir /tmp/etcd
+
+[12:18 PM]-[easypayadm@k8s-master1]-[~/.../rbac/etcd-v3.5.6-linux-amd64]- |main U:1 ?:2 ✗|
+$ cd /tmp/etcd/
+
+[12:18 PM]-[easypayadm@k8s-master1]-[/tmp/etcd]-
+$ sudo ETCDCTL_API=3 \
+  etcdctl snapshot save easypay-snapshot.db   \
+  --cacert /etc/kubernetes/pki/etcd/ca.crt     \
+  --cert   /etc/kubernetes/pki/etcd/server.crt \
+  --key    /etc/kubernetes/pki/etcd/server.key
+{"level":"info","ts":"2023-01-06T12:20:13.679Z","caller":"snapshot/v3_snapshot.go:65","msg":"created temporary db file","path":"easypay-snapshot.db.part"}
+{"level":"info","ts":"2023-01-06T12:20:13.691Z","logger":"client","caller":"v3@v3.5.6/maintenance.go:212","msg":"opened snapshot stream; downloading"}
+{"level":"info","ts":"2023-01-06T12:20:13.691Z","caller":"snapshot/v3_snapshot.go:73","msg":"fetching snapshot","endpoint":"127.0.0.1:2379"}
+{"level":"info","ts":"2023-01-06T12:20:13.755Z","logger":"client","caller":"v3@v3.5.6/maintenance.go:220","msg":"completed snapshot read; closing"}
+{"level":"info","ts":"2023-01-06T12:20:13.851Z","caller":"snapshot/v3_snapshot.go:88","msg":"fetched snapshot","endpoint":"127.0.0.1:2379","size":"4.6 MB","took":"now"}
+{"level":"info","ts":"2023-01-06T12:20:13.851Z","caller":"snapshot/v3_snapshot.go:97","msg":"saved","path":"easypay-snapshot.db"}
+Snapshot saved at easypay-snapshot.db
+
+[12:20 PM]-[easypayadm@k8s-master1]-[/tmp/etcd]-
+$ ll
+total 4.4M
+-rw------- 1 root root 4.4M Jan  6 12:20 easypay-snapshot.db

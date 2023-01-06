@@ -1,0 +1,30 @@
+[07:54 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl apply -f persistent-volume.yaml
+persistentvolume/easypay-postgres-pv created
+
+[07:55 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl get pv -n easypay
+NAME                  CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE
+easypay-postgres-pv   5Gi        RWX            Retain           Available           manual                  20s
+
+[07:55 AM]-[easypayadm@k8s-master1]-[~/.../k8s/db]- |main ✓|
+$ kubectl describe pv -n easypay
+Name:            easypay-postgres-pv
+Labels:          app=backend
+                 type=local
+Annotations:     <none>
+Finalizers:      [kubernetes.io/pv-protection]
+StorageClass:    manual
+Status:          Available
+Claim:
+Reclaim Policy:  Retain
+Access Modes:    RWX
+VolumeMode:      Filesystem
+Capacity:        5Gi
+Node Affinity:   <none>
+Message:
+Source:
+    Type:          HostPath (bare host directory volume)
+    Path:          /mnt/data
+    HostPathType:
+Events:            <none>

@@ -1,0 +1,252 @@
+
+[09:57 AM]-[noufal@CICON018]-[~/.../infra/terraform]- |main U:3 ?:2 ✗|
+$ terraform apply easypay.tfplan
+aws_key_pair.k8s: Creating...
+aws_vpc.k8s: Creating...
+aws_key_pair.k8s: Creation complete after 2s [id=k8s]
+aws_vpc.k8s: Still creating... [10s elapsed]
+aws_vpc.k8s: Creation complete after 16s [id=vpc-0401abf1614d9587b]
+aws_internet_gateway.k8s: Creating...
+aws_subnet.k8s: Creating...
+aws_security_group.worker: Creating...
+aws_lb_target_group.k8s: Creating...
+aws_security_group.controller: Creating...
+aws_subnet.k8s: Creation complete after 1s [id=subnet-02b6694116bd2b197]
+aws_lb.k8s: Creating...
+aws_internet_gateway.k8s: Creation complete after 1s [id=igw-05ebac21fa373844a]
+aws_route_table.k8s: Creating...
+aws_lb_target_group.k8s: Creation complete after 3s [id=arn:aws:elasticloadbalancing:us-east-1:094083975840:targetgroup/kubernetes/4002097c06e6bf2e]
+aws_lb_target_group_attachment.k8s[0]: Creating...
+aws_route_table.k8s: Creation complete after 2s [id=rtb-0677e6bad7fd8c50f]
+aws_route_table_association.k8s: Creating...
+aws_security_group.worker: Creation complete after 4s [id=sg-0e64e64bb157691d3]
+aws_security_group_rule.worker-egress: Creating...
+aws_security_group_rule.worker-http: Creating...
+aws_security_group_rule.worker-nodeport-services: Creating...
+aws_security_group_rule.worker-https: Creating...
+aws_instance.worker[2]: Creating...
+aws_instance.worker[1]: Creating...
+aws_lb_target_group_attachment.k8s[0]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:094083975840:targetgroup/kubernetes/4002097c06e6bf2e-20230106055829565300000001]
+aws_security_group.controller: Creation complete after 4s [id=sg-0940e3e7679cb1b65]
+aws_security_group_rule.worker-ssh: Creating...
+aws_instance.worker[0]: Creating...
+aws_security_group_rule.worker-egress: Creation complete after 1s [id=sgrule-3983658337]
+aws_security_group_rule.worker-kubelet-api-self: Creating...
+aws_route_table_association.k8s: Creation complete after 2s [id=rtbassoc-09fc259b2c12fdfce]
+aws_security_group_rule.controller-nodeport-services: Creating...
+aws_security_group_rule.worker-http: Creation complete after 2s [id=sgrule-1820247612]
+aws_security_group_rule.controller-apiserver: Creating...
+aws_security_group_rule.controller-nodeport-services: Creation complete after 1s [id=sgrule-4020006362]
+aws_security_group_rule.controller-kube-scheduler: Creating...
+aws_security_group_rule.controller-apiserver: Creation complete after 1s [id=sgrule-2295608300]
+aws_security_group_rule.worker-https: Creation complete after 3s [id=sgrule-2815889654]
+aws_security_group_rule.controller-ssh: Creating...
+aws_instance.controller[0]: Creating...
+aws_security_group_rule.controller-kube-scheduler: Creation complete after 2s [id=sgrule-4235830732]
+aws_security_group_rule.controller-egress: Creating...
+aws_security_group_rule.worker-nodeport-services: Creation complete after 4s [id=sgrule-575127143]
+aws_security_group_rule.controller-etcd: Creating...
+aws_security_group_rule.controller-ssh: Creation complete after 2s [id=sgrule-3914697108]
+aws_security_group_rule.worker-ssh: Creation complete after 5s [id=sgrule-3673463689]
+aws_security_group_rule.controller-kubelet-api-self: Creating...
+aws_security_group_rule.worker-kubelet-api: Creating...
+aws_security_group_rule.controller-egress: Creation complete after 2s [id=sgrule-3118274227]
+aws_security_group_rule.worker-kubelet-api-self: Creation complete after 5s [id=sgrule-946967520]
+aws_security_group_rule.controller-kube-controller-manager: Creating...
+aws_security_group_rule.controller_allow_ping: Creating...
+aws_lb.k8s: Still creating... [10s elapsed]
+aws_security_group_rule.controller-etcd: Creation complete after 3s [id=sgrule-3000897782]
+aws_security_group_rule.controller-kubelet-api: Creating...
+aws_security_group_rule.worker-kubelet-api: Creation complete after 3s [id=sgrule-2535335639]
+aws_security_group_rule.worker_allow_ping: Creating...
+aws_security_group_rule.controller-kubelet-api-self: Creation complete after 4s [id=sgrule-2970316846]
+aws_security_group_rule.worker_allow_ping: Creation complete after 1s [id=sgrule-4170642176]
+aws_instance.worker[1]: Still creating... [10s elapsed]
+aws_instance.worker[2]: Still creating... [10s elapsed]
+aws_security_group_rule.controller-kube-controller-manager: Creation complete after 4s [id=sgrule-1022738767]
+aws_instance.worker[0]: Still creating... [10s elapsed]
+aws_security_group_rule.controller_allow_ping: Creation complete after 5s [id=sgrule-1473935518]
+aws_security_group_rule.controller-kubelet-api: Creation complete after 4s [id=sgrule-509920537]
+aws_instance.controller[0]: Still creating... [10s elapsed]
+aws_lb.k8s: Still creating... [20s elapsed]
+aws_instance.worker[1]: Still creating... [20s elapsed]
+aws_instance.worker[2]: Still creating... [20s elapsed]
+aws_instance.worker[0]: Still creating... [20s elapsed]
+aws_instance.controller[0]: Still creating... [20s elapsed]
+aws_lb.k8s: Still creating... [30s elapsed]
+aws_instance.controller[0]: Creation complete after 26s [id=i-05dee8ff935acb5eb]
+null_resource.k8s_controller_bootstrap[0]: Creating...
+null_resource.k8s_controller_bootstrap[0]: Provisioning with 'remote-exec'...
+null_resource.k8s_controller_bootstrap[0] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Host: 34.224.17.162
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   User: ubuntu
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Password: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Private key: true
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Certificate: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   SSH Agent: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Checking Host Key: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Target Platform: unix
+aws_instance.worker[1]: Still creating... [30s elapsed]
+aws_instance.worker[2]: Still creating... [30s elapsed]
+aws_instance.worker[0]: Still creating... [30s elapsed]
+null_resource.k8s_controller_bootstrap[0] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Host: 34.224.17.162
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   User: ubuntu
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Password: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Private key: true
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Certificate: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   SSH Agent: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Checking Host Key: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Target Platform: unix
+null_resource.k8s_controller_bootstrap[0] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Host: 34.224.17.162
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   User: ubuntu
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Password: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Private key: true
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Certificate: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   SSH Agent: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Checking Host Key: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Target Platform: unix
+aws_instance.worker[0]: Creation complete after 36s [id=i-050b7149fc354912b]
+aws_instance.worker[2]: Creation complete after 36s [id=i-01d5fa4d30147164f]
+aws_lb.k8s: Still creating... [40s elapsed]
+null_resource.k8s_controller_bootstrap[0]: Still creating... [10s elapsed]
+null_resource.k8s_controller_bootstrap[0] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Host: 34.224.17.162
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   User: ubuntu
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Password: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Private key: true
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Certificate: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   SSH Agent: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Checking Host Key: false
+null_resource.k8s_controller_bootstrap[0] (remote-exec):   Target Platform: unix
+aws_instance.worker[1]: Still creating... [40s elapsed]
+null_resource.k8s_controller_bootstrap[0] (remote-exec): Connected!
+aws_instance.worker[1]: Creation complete after 45s [id=i-0fa52aaaaf43a8320]
+null_resource.k8s_worker_bootstrap[0]: Creating...
+null_resource.k8s_worker_bootstrap[2]: Creating...
+local_file.hosts_cfg: Creating...
+null_resource.k8s_worker_bootstrap[1]: Creating...
+null_resource.k8s_worker_bootstrap[0]: Provisioning with 'remote-exec'...
+null_resource.k8s_worker_bootstrap[0] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Host: 54.157.168.33
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Target Platform: unix
+null_resource.k8s_worker_bootstrap[2]: Provisioning with 'remote-exec'...
+null_resource.k8s_worker_bootstrap[2] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[2] (remote-exec):   Host: 34.224.6.231
+null_resource.k8s_worker_bootstrap[2] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[2] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[2] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[2] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[2] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[2] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[2] (remote-exec):   Target Platform: unix
+null_resource.k8s_worker_bootstrap[1]: Provisioning with 'remote-exec'...
+null_resource.k8s_worker_bootstrap[1] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Host: 100.26.239.53
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Target Platform: unix
+local_file.hosts_cfg: Creation complete after 0s [id=e5d6aeb36193fa323d812f46ad999986f049e0aa]
+null_resource.k8s_controller_bootstrap[0]: Creation complete after 17s [id=829686928420971330]
+null_resource.k8s_worker_bootstrap[0] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Host: 54.157.168.33
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Target Platform: unix
+null_resource.k8s_worker_bootstrap[2] (remote-exec): Connected!
+aws_lb.k8s: Still creating... [50s elapsed]
+null_resource.k8s_worker_bootstrap[0] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Host: 54.157.168.33
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Target Platform: unix
+null_resource.k8s_worker_bootstrap[1] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Host: 100.26.239.53
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Target Platform: unix
+null_resource.k8s_worker_bootstrap[2]: Creation complete after 6s [id=8365338503606165458]
+null_resource.k8s_worker_bootstrap[1] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Host: 100.26.239.53
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Target Platform: unix
+null_resource.k8s_worker_bootstrap[0] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Host: 54.157.168.33
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[0] (remote-exec):   Target Platform: unix
+null_resource.k8s_worker_bootstrap[0] (remote-exec): Connected!
+null_resource.k8s_worker_bootstrap[0]: Still creating... [10s elapsed]
+null_resource.k8s_worker_bootstrap[1]: Still creating... [10s elapsed]
+null_resource.k8s_worker_bootstrap[1] (remote-exec): Connecting to remote host via SSH...
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Host: 100.26.239.53
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   User: ubuntu
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Password: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Private key: true
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Certificate: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   SSH Agent: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Checking Host Key: false
+null_resource.k8s_worker_bootstrap[1] (remote-exec):   Target Platform: unix
+aws_lb.k8s: Still creating... [1m0s elapsed]
+null_resource.k8s_worker_bootstrap[1] (remote-exec): Connected!
+null_resource.k8s_worker_bootstrap[0]: Creation complete after 15s [id=627562321773092636]
+null_resource.k8s_worker_bootstrap[1]: Creation complete after 16s [id=1529552247455762250]
+aws_lb.k8s: Still creating... [1m10s elapsed]
+aws_lb.k8s: Still creating... [1m20s elapsed]
+aws_lb.k8s: Still creating... [1m30s elapsed]
+aws_lb.k8s: Still creating... [1m40s elapsed]
+aws_lb.k8s: Still creating... [1m50s elapsed]
+aws_lb.k8s: Still creating... [2m0s elapsed]
+aws_lb.k8s: Still creating... [2m10s elapsed]
+aws_lb.k8s: Still creating... [2m20s elapsed]
+aws_lb.k8s: Creation complete after 2m24s [id=arn:aws:elasticloadbalancing:us-east-1:094083975840:loadbalancer/net/kubernetes/97e4be79e02778fa]
+aws_lb_listener.k8s: Creating...
+aws_lb_listener.k8s: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:094083975840:listener/net/kubernetes/97e4be79e02778fa/61bb9f3ec81c2513]
+
+Apply complete! Resources: 39 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+controller_instance_ips = [
+  "34.224.17.162",
+]
+worker_instance_ips = [
+  "54.157.168.33",
+  "100.26.239.53",
+  "34.224.6.231",
+]
+
+[10:00 AM]-[noufal@CICON018]-[~/.../infra/terraform]- |main U:3 ?:3 ✗|
+$

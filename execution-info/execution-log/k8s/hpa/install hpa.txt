@@ -1,0 +1,36 @@
+
+[10:36 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl apply -f hpa.yaml
+horizontalpodautoscaler.autoscaling/easypay-api created
+
+[10:36 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl get hpa -n easypay
+NAME          REFERENCE                TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+easypay-api   Deployment/easypay-api   <unknown>/50%   1         10        0          6s
+
+[10:37 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl describe hpa -n easypay
+Warning: autoscaling/v2beta2 HorizontalPodAutoscaler is deprecated in v1.23+, unavailable in v1.26+; use autoscaling/v2 HorizontalPodAutoscaler
+Name:                                                  easypay-api
+Namespace:                                             easypay
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Fri, 06 Jan 2023 10:36:54 +0000
+Reference:                                             Deployment/easypay-api
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (1m) / 50%
+Min replicas:                                          1
+Max replicas:                                          10
+Deployment pods:                                       1 current / 1 desired
+Conditions:
+  Type            Status  Reason               Message
+  ----            ------  ------               -------
+  AbleToScale     True    ScaleDownStabilized  recent recommendations were higher than current one, applying the highest recent recommendation
+  ScalingActive   True    ValidMetricFound     the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  False   DesiredWithinRange   the desired count is within the acceptable range
+Events:           <none>
+
+[10:37 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl get hpa -n easypay
+NAME          REFERENCE                TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+easypay-api   Deployment/easypay-api   1%/50%    1         10        1          30s

@@ -1,0 +1,125 @@
+
+[10:31 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl apply -f deployment.yaml
+deployment.apps/easypay-api created
+
+[10:31 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl get deploy -n easypay
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+easypay-api   1/1     1            1           10s
+easypay-db    1/1     1            1           147m
+
+[10:31 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl describe deploy easypay-api  -n easypay
+Name:                   easypay-api
+Namespace:              easypay
+CreationTimestamp:      Fri, 06 Jan 2023 10:31:35 +0000
+Labels:                 <none>
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=frontend
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=frontend
+  Containers:
+   easypay-api:
+    Image:      noufionline/easypay:2.0
+    Port:       8080/TCP
+    Host Port:  0/TCP
+    Limits:
+      cpu:  500m
+    Requests:
+      cpu:  200m
+    Environment:
+      POSTGRES_DB:                        <set to the key 'POSTGRES_DB' of config map 'postgres-config'>    Optional: false
+      POSTGRES_USER:                      <set to the key 'POSTGRES_USER' in secret 'postgres-secret'>      Optional: false
+      POSTGRES_PASSWORD:                  <set to the key 'POSTGRES_PASSWORD' in secret 'postgres-secret'>  Optional: false
+      ConnectionStrings__EasyPayContext:  Host=easypay-backend-service;Database=$(POSTGRES_DB);Username=$(POSTGRES_USER);Password=$(POSTGRES_PASSWORD)
+      ASPNETCORE_URLS:                    http://+:8080
+    Mounts:                               <none>
+  Volumes:                                <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   easypay-api-d4f895cf9 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  14s   deployment-controller  Scaled up replica set easypay-api-d4f895cf9 to 1
+
+[10:31 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl  get pod -n easypay
+NAME                          READY   STATUS    RESTARTS   AGE
+easypay-api-d4f895cf9-97q6w   1/1     Running   0          35s
+easypay-db-5db57668d4-j724g   1/1     Running   0          147m
+
+[10:32 AM]-[easypayadm@k8s-master1]-[~/.../k8s/api]- |main ✗|
+$ kubectl describe pod easypay-api-d4f895cf9-97q6w -n easypay
+Name:             easypay-api-d4f895cf9-97q6w
+Namespace:        easypay
+Priority:         0
+Service Account:  default
+Node:             k8s-worker1/172.16.16.201
+Start Time:       Fri, 06 Jan 2023 10:31:35 +0000
+Labels:           app=frontend
+                  pod-template-hash=d4f895cf9
+Annotations:      cni.projectcalico.org/containerID: 03dd707f38bfdde7a15c0e720824acd338acc6a0fe6b7348b389c9ed4dcc0e36
+                  cni.projectcalico.org/podIP: 192.168.194.74/32
+                  cni.projectcalico.org/podIPs: 192.168.194.74/32
+Status:           Running
+IP:               192.168.194.74
+IPs:
+  IP:           192.168.194.74
+Controlled By:  ReplicaSet/easypay-api-d4f895cf9
+Containers:
+  easypay-api:
+    Container ID:   containerd://5a0e85a4de5e2cc710edc59cb6751b9a783bc32aaf0bca6fec4a8d00cc22f102
+    Image:          noufionline/easypay:2.0
+    Image ID:       docker.io/noufionline/easypay@sha256:bb9a9237681ac14e87840850a1241361a99741819268a34d946d18867adf2293
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Fri, 06 Jan 2023 10:31:36 +0000
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:  500m
+    Requests:
+      cpu:  200m
+    Environment:
+      POSTGRES_DB:                        <set to the key 'POSTGRES_DB' of config map 'postgres-config'>    Optional: false
+      POSTGRES_USER:                      <set to the key 'POSTGRES_USER' in secret 'postgres-secret'>      Optional: false
+      POSTGRES_PASSWORD:                  <set to the key 'POSTGRES_PASSWORD' in secret 'postgres-secret'>  Optional: false
+      ConnectionStrings__EasyPayContext:  Host=easypay-backend-service;Database=$(POSTGRES_DB);Username=$(POSTGRES_USER);Password=$(POSTGRES_PASSWORD)
+      ASPNETCORE_URLS:                    http://+:8080
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gjpw5 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  kube-api-access-gjpw5:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  59s   default-scheduler  Successfully assigned easypay/easypay-api-d4f895cf9-97q6w to k8s-worker1
+  Normal  Pulled     58s   kubelet            Container image "noufionline/easypay:2.0" already present on machine
+  Normal  Created    58s   kubelet            Created container easypay-api
+  Normal  Started    58s   kubelet            Started container easypay-api
