@@ -1,0 +1,38 @@
+easypay-api-easypay-db-service-1  | 2023-01-06 22:00:38.579 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+easypay-api-easypay-db-service-1  | 2023-01-06 22:00:38.581 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+easypay-api-easypay-db-service-1  | 2023-01-06 22:00:38.583 UTC [29] LOG:  database system was shut down at 2023-01-06 21:36:49 UTC
+easypay-api-easypay-db-service-1  | 2023-01-06 22:00:38.586 UTC [1] LOG:  database system is ready to accept connections
+easypay-api-easypay.webapi-1      | warn: Microsoft.EntityFrameworkCore.Model.Validation[10400]
+easypay-api-easypay.webapi-1      |       Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+easypay-api-easypay.webapi-1      | info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+easypay-api-easypay.webapi-1      |       Executed DbCommand (57ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+easypay-api-easypay.webapi-1      |       
+easypay-api-easypay.webapi-1      |       SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+easypay-api-easypay.webapi-1      |       FROM pg_class AS cls
+easypay-api-easypay.webapi-1      |       JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+easypay-api-easypay.webapi-1      |       WHERE
+easypay-api-easypay.webapi-1      |               cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+easypay-api-easypay.webapi-1      |               ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+easypay-api-easypay.webapi-1      |               -- Exclude tables which are members of PG extensions
+easypay-api-easypay.webapi-1      |               NOT EXISTS (
+easypay-api-easypay.webapi-1      |                   SELECT 1 FROM pg_depend WHERE
+easypay-api-easypay.webapi-1      |                       classid=(
+easypay-api-easypay.webapi-1      |                           SELECT cls.oid
+easypay-api-easypay.webapi-1      |                           FROM pg_class AS cls
+easypay-api-easypay.webapi-1      |                                    JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+easypay-api-easypay.webapi-1      |                           WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+easypay-api-easypay.webapi-1      |                       ) AND
+easypay-api-easypay.webapi-1      |                       objid=cls.oid AND
+easypay-api-easypay.webapi-1      |                       deptype IN ('e', 'x')
+easypay-api-easypay.webapi-1      |               )
+easypay-api-easypay.webapi-1      | info: Microsoft.Hosting.Lifetime[14]
+easypay-api-easypay.webapi-1      |       Now listening on: https://[::]:443
+easypay-api-easypay.webapi-1      | info: Microsoft.Hosting.Lifetime[14]
+easypay-api-easypay.webapi-1      |       Now listening on: http://[::]:80
+easypay-api-easypay.webapi-1      | info: Microsoft.Hosting.Lifetime[0]
+easypay-api-easypay.webapi-1      |       Application started. Press Ctrl+C to shut down.
+easypay-api-easypay.webapi-1      | info: Microsoft.Hosting.Lifetime[0]
+easypay-api-easypay.webapi-1      |       Hosting environment: Development
+easypay-api-easypay.webapi-1      | info: Microsoft.Hosting.Lifetime[0]
+easypay-api-easypay.webapi-1      |       Content root path: /app/
+
