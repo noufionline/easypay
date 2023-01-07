@@ -13,18 +13,18 @@ using Microsoft.EntityFrameworkCore;
 namespace EasyPay.WebApi.Controllers
 {
 
-    [Route("api/increase-cpu-load")]
-    public class CpuLoadController: Controller{
-        [HttpGet]
-        public IActionResult Get(){
-            double x=0;
-            for(var i=0;i<=1000000; i++){
-                x+=Math.Sqrt(i);
-            }
+    // [Route("api/increase-cpu-load")]
+    // public class CpuLoadController: Controller{
+    //     [HttpGet]
+    //     public IActionResult Get(){
+    //         double x=0;
+    //         for(var i=0;i<=1000000; i++){
+    //             x+=Math.Sqrt(i);
+    //         }
 
-            return Ok("Ok!!!");
-        }
-    }
+    //         return Ok("Ok!!!");
+    //     }
+    // }
 
     [Route("api/[controller]")]
     public class ProductController : Controller
