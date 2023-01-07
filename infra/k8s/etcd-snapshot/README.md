@@ -76,33 +76,3 @@ cd ..
 
 rm -rf *.tar.gz etcd-*/
 ```
-
-
-**download.sh:**
-```sh
-#!//bin/bash
-
-#Find the etcd version number from the etcd-k8s-master1
-export RELEASE=$(kubectl exec -it etcd-k8s-master1 -n kube-system -- /bin/sh -c 'ETCDCTL_API=3 /usr/local/bin/etcd --version' | head -n 1 | awk '{ print $3 }')
-
-# Download the archive
-
-wget https://github.com/etcd-io/etcd/releases/download/v${RELEASE}/etcd-v${RELEASE}-linux-amd64.tar.gz
-
-# Extract the archive
-tar -zxvf etcd-v${RELEASE}-linux-amd64.tar.gz
-
-cd etcd-v${RELEASE}-linux-amd64/
-
-
-# Install in /usr/local/bin
-sudo cp etcdctl /usr/local/bin
-
-etcdctl version
-
-# Cleanup
-
-cd ..
-
-rm -rf *.tar.gz etcd-*/
-```
