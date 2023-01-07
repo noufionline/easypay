@@ -7,7 +7,7 @@
 - Using docker build command images is built
 - Using docker push command image is pushed to docker hub
 - Docker image is pulled from [noufionline/easypay:2.0](https://hub.docker.com/r/noufionline/easypay) 
-
+  'docker pull noufionline/easypay:2.0'
 **EasyPay.Test**
 
 - Project contains Tests for the controllers used in project
