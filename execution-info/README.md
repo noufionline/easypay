@@ -1,6 +1,11 @@
 
-# Execution Logs and Images are stored here
+# This section contains all the Execution Logs and Images
+       
+    
+**execution-log**    
 
+Contains the logs from the execution.
 
-  - Execution Logs
-  - Images
+**images**    
+
+Contains all of the screennshots taken while executing the project.
