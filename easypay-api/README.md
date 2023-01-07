@@ -9,6 +9,9 @@
 ![docker build](https://github.com/noufionline/easypay/blob/main/execution-info/images/k8s/api/Docker%20build%20image.png)
 
 - Using docker push command image is pushed to docker hub
+
+![docker push](https://github.com/noufionline/easypay/blob/main/execution-info/images/k8s/api/Docker%20push%20to%20docker%20hub.png)
+
 - Docker image is pulled from [noufionline/easypay:2.0](https://hub.docker.com/r/noufionline/easypay) 
 
 ```
