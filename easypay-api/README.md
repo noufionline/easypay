@@ -12,7 +12,7 @@
 
 - Project contains Tests for the controllers used in project
   1. ProductController
-  2. 
+  2. ShoppingCartController
   
 - To escalate CPU Utilization a seperate controller provided
 
