@@ -79,7 +79,7 @@ rm -rf *.tar.gz etcd-*/
 
 
 **download.sh:**
-```
+```sh
 #!//bin/bash
 
 #Find the etcd version number from the etcd-k8s-master1
