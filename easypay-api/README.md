@@ -5,13 +5,15 @@
 
 - Tables and sample data are scaffolded when the Web Api Projects runs for the first time.
 - Using docker build command images is built
+
+![docker build](https://github.com/noufionline/easypay/blob/main/execution-info/images/k8s/api/Docker%20build%20image.png)
+
 - Using docker push command image is pushed to docker hub
 - Docker image is pulled from [noufionline/easypay:2.0](https://hub.docker.com/r/noufionline/easypay) 
 
 ```
 docker pull noufionline/easypay:2.0
 ```
-
 
 **EasyPay.Test**
 
