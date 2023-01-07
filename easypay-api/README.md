@@ -18,6 +18,9 @@
 docker pull noufionline/easypay:2.0
 ```
 
+![Docker hub](https://github.com/noufionline/easypay/blob/main/execution-info/images/k8s/api/easypay%20image%20on%20docker%20hub.png)
+
+
 **EasyPay.Test**
 
 - Project contains Tests for the controllers used in project
