@@ -1,0 +1,44 @@
+[10:45 AM]-[noufal@CICON018]-[~/.../infra/ansible]- |main U:3 ?:3 ✗|
+$ ansible-playbook create-worker-nodes.yaml
+
+PLAY [workers] ************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************
+ok: [54.157.168.33]
+ok: [34.224.6.231]
+ok: [100.26.239.53]
+
+TASK [Copy join command to worker nodes.] *********************************************************************************
+changed: [54.157.168.33]
+changed: [34.224.6.231]
+changed: [100.26.239.53]
+
+TASK [Join the Worker nodes with the master.] *****************************************************************************
+changed: [34.224.6.231]
+changed: [54.157.168.33]
+changed: [100.26.239.53]
+
+TASK [debug] **************************************************************************************************************
+ok: [54.157.168.33] => {
+    "msg": "[preflight] Running pre-flight checks\n[preflight] Reading configuration from the cluster...\n[preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'\n[kubelet-start] Writing kubelet configuration to file \"/var/lib/kubelet/config.yaml\"\n[kubelet-start] Writing kubelet environment file with flags to file \"/var/lib/kubelet/kubeadm-flags.env\"\n[kubelet-start] Starting the kubelet\n[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...\n\nThis node has joined the cluster:\n* Certificate signing request was sent to apiserver and a response was received.\n* The Kubelet was informed of the new secure connection details.\n\nRun 'kubectl get nodes' on the control-plane to see this node join the cluster."
+}
+ok: [100.26.239.53] => {
+    "msg": "[preflight] Running pre-flight checks\n[preflight] Reading configuration from the cluster...\n[preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'\n[kubelet-start] Writing kubelet configuration to file \"/var/lib/kubelet/config.yaml\"\n[kubelet-start] Writing kubelet environment file with flags to file \"/var/lib/kubelet/kubeadm-flags.env\"\n[kubelet-start] Starting the kubelet\n[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...\n\nThis node has joined the cluster:\n* Certificate signing request was sent to apiserver and a response was received.\n* The Kubelet was informed of the new secure connection details.\n\nRun 'kubectl get nodes' on the control-plane to see this node join the cluster."
+}
+ok: [34.224.6.231] => {
+    "msg": "[preflight] Running pre-flight checks\n[preflight] Reading configuration from the cluster...\n[preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'\n[kubelet-start] Writing kubelet configuration to file \"/var/lib/kubelet/config.yaml\"\n[kubelet-start] Writing kubelet environment file with flags to file \"/var/lib/kubelet/kubeadm-flags.env\"\n[kubelet-start] Starting the kubelet\n[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...\n\nThis node has joined the cluster:\n* Certificate signing request was sent to apiserver and a response was received.\n* The Kubelet was informed of the new secure connection details.\n\nRun 'kubectl get nodes' on the control-plane to see this node join the cluster."
+}
+
+PLAY [master] *************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************
+ok: [34.224.17.162]
+
+TASK [Configure kubectl command auto-completion.] *************************************************************************
+changed: [34.224.17.162]
+
+PLAY RECAP ****************************************************************************************************************
+34.224.17.162                : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+54.157.168.33                : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+34.224.6.231                 : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+100.26.239.53                : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
