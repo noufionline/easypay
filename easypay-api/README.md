@@ -34,7 +34,7 @@ docker pull noufionline/easypay:2.0
   
 - To escalate CPU Utilization a seperate controller provided
 
-```
+```csharp
 using System;
 using Microsoft.AspNetCore.Mvc;
 
