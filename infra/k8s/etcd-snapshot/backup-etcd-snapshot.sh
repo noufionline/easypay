@@ -1,16 +1,26 @@
 #!/bin/bash
 
-set -x
+echo "[TASK 1] Create /tmp/etcd temp directory"
+echo
+sudo mkdir /tmp/etcd
+echo
 
-# Create temp folder
-WORK_DIR=/tmp/etcd
-[ -d ${WORK_DIR} ] || mkdir -p ${WORK_DIR}
-cd ${WORK_DIR}
+echo "[TASK 2] Change directory to /tmp/etcd"
+echo
+cd /tmp/etcd/
+echo
 
-# Create snapshot
-ETCD_PKI_DIR=/etc/kubernetes/pki/etcd
+echo "[TASK 3] Change Take the snapshot"
+echo
 sudo ETCDCTL_API=3 \
-  etcdctl snapshot save snapshot.db   \
-  --cacert ${ETCD_PKI_DIR}/ca.crt     \
-  --cert   ${ETCD_PKI_DIR}/server.crt \
-  --key    ${ETCD_PKI_DIR}/server.key
+  etcdctl snapshot save easypay-snapshot.db   \
+  --cacert /etc/kubernetes/pki/etcd/ca.crt     \
+  --cert   /etc/kubernetes/pki/etcd/server.crt \
+  --key    /etc/kubernetes/pki/etcd/server.key
+
+echo
+
+echo "[TASK 4] Check the snapshot"
+echo
+
+ls  -la
