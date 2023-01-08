@@ -16,3 +16,6 @@ terraform apply "easypay.tfplan"
 ```
 
 ![terraform plan](https://github.com/noufionline/easypay/blob/main/execution-info/images/terraform/terraform%20apply.png)
+
+
+![outcome](https://github.com/noufionline/easypay/blob/main/execution-info/images/terraform/Terraform-outcome.png)
