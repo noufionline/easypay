@@ -6,36 +6,9 @@ actually do the backup of the snapshot.
 **Usage:**
 
 ```sh
-sh ./script-to-download-etcdctl.sh  # download the utility first
+sh ./download-etcdctl.sh  # download the utility first
 
-sh ./script-to-backup-etcd-snapshot.sh
-```
-
-**backup-etcd-snapshot.sh:**
-
-```sh
-#!/bin/bash
-
-set -x
-
-# Create temp folder
-
-WORK_DIR=/tmp/etcd
-
-[ -d ${WORK_DIR} ] || mkdir -p ${WORK_DIR}
-
-cd ${WORK_DIR}
-
-# Create snapshot
-
-ETCD_PKI_DIR=/etc/kubernetes/pki/etcd
-
-sudo ETCDCTL_API=3
-
-etcdctl snapshot save snapshot.db \
-   --cacert \${ETCD_PKI_DIR}/ca.crt \
-   --cert \${ETCD_PKI_DIR}/server.crt \
-   --key \${ETCD_PKI_DIR}/server.key
+sh ./backup-etcd-snapshot.sh
 ```
 
 **download-etcdctl.sh:**
@@ -43,36 +16,81 @@ etcdctl snapshot save snapshot.db \
 ```sh
 #!/bin/bash
 
-set -x
+#Get the etcd pod name
+etcd_pod=$(kubectl get pods -n kube-system | grep etcd | awk '{ print $1 }')
 
-# Create temp folder
+# Store etcd version to a variable
 
-WORK_DIR=/tmp/etcd
+release=$(kubectl exec -it etcd-k8s-master1 -n kube-system -- /bin/sh -c 'ETCDCTL_API=3 /usr/local/bin/etcd --version' | awk '{ print $3 }' | head -1 | sed 's/\r$//')
 
-[ -d ${WORK_DIR} ] || mkdir -p ${WORK_DIR}
 
-cd ${WORK_DIR}
 
-# Get the latest from the releases folder
+echo "The release used inside the ${etcd_pod} is ${release}"
 
-curl -s https://api.github.com/repos/etcd-io/etcd/releases/latest |\
-   grep browser_download_url |\
-   grep linux-amd64 |\
-   cut -d '"' -f 4 | wget -qi -
+echo "[TASK 1] Download the version ${release}"
+echo
 
-# Extract the archive
+wget  https://github.com/etcd-io/etcd/releases/download/v${release}/etcd-v${release}-linux-amd64.tar.gz
 
-tar xvf *.tar.gz
+echo 
 
-# Install in /usr/local/bin
+echo "[TASK 2] Extract the zip file"
+echo
 
-cd etcd-*/
+tar -zxvf etcd-v${release}-linux-amd64.tar.gz
 
-sudo mv etcd* /usr/local/bin/
+echo 
 
-# Cleanup
+echo "[TASK 3] Install in /usr/local/bin"
+echo
+sudo mv etcd-v${release}-linux-amd64/etcdctl /usr/local/bin
 
-cd ..
+echo
+
+echo "[TASK 4] Check the installed version"
+echo
+etcdctl version
+echo
+
+
+echo "[TASK 5] Cleanup"
+echo
 
 rm -rf *.tar.gz etcd-*/
+```
+
+
+
+**backup-etcd-snapshot.sh:**
+
+```sh
+#!/bin/bash
+
+echo "[TASK 1] Create /tmp/etcd temp directory"
+echo
+sudo mkdir /tmp/etcd
+echo
+
+echo "[TASK 2] Change directory to /tmp/etcd"
+echo
+cd /tmp/etcd/
+echo
+
+echo "[TASK 3] Change Take the snapshot"
+echo
+sudo ETCDCTL_API=3 \
+  etcdctl snapshot save easypay-snapshot.db   \
+  --cacert /etc/kubernetes/pki/etcd/ca.crt     \
+  --cert   /etc/kubernetes/pki/etcd/server.crt \
+  --key    /etc/kubernetes/pki/etcd/server.key
+
+echo
+
+echo "[TASK 4] Check the snapshot"
+echo
+
+ls -la
+
+
+
 ```
