@@ -24,6 +24,10 @@ ansible-plabook create-worker-nodes.yaml
 
 ![create worker nodes](https://github.com/noufionline/easypay/blob/main/execution-info/images/ansible/create-worker-nodes-playbook.png)
 
+
+![ssh to control plane](https://github.com/noufionline/easypay/blob/main/execution-info/images/ansible/ssh-to-control-plane-node.png.png)
+
+
 **Bingo the cluster is ready up and running! lets check it out.**
 
 ```sh
